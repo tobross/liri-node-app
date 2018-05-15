@@ -81,7 +81,7 @@ function spotifyThisSong() {
         var songs = data.tracks.items;
 
         console.log("Results: " + songs.length + " total tracks.");
-        for (i = 0; i < songs.length; i++) {
+        for (i = 0; i < 5; i++) {
             console.log(line + songs[i].artists[0].name + line + songs[i].name + line + songs[i].preview_url + line + songs[i].album.name + line);
             var artists;
         }
@@ -110,17 +110,25 @@ function doWhatItSays() {
 
 };
 
-// function movieThis() {
-//     var movie = userInput;
-//     if (!movie) {
-//         noInput();
-//     }
-//     movieName = movie;
-//     request("http://omdbapi.com?t=" + movieName + "&y=&plot=shot&apikey=trilogy", function (error, response, body) {
-//         if (!error && response.statusCode == 200) {
-//             var movieObject = JSON.parse(body);
-//             var movieResults = "Title: " + movieObject.Title + "\n" +
-//                 "Year: " + movieObject.Year;
-//         };
-//     });
-// };
+function movieThis() {
+    var movie = commandTwo;
+    if (!movie) {
+        noInput();
+    }
+    movieName = movie;
+    request("http://omdbapi.com?t=" + movieName + "&y=&plot=shot&apikey=trilogy", function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            var movieObject = JSON.parse(body);
+            var movieResults = 
+            line + "\nTitle: " + movieObject.Title + line +
+                "\nYear: " + movieObject.Year +  line +
+                "\nIMDB Rating: " +movieObject.imdbRating + line +
+                "\nRotten Tomatoes Rating: " + movieObject.Ratings[1].Value + line + 
+                "\nCountry: " + movieObject.Country + line +
+                "\nLanguage: " + movieObject.Language + line + 
+                "\nPlot: " + movieObject.Plot + line + 
+                "\nActors: " + movieObject.Actors + line;
+                console.log(movieResults);
+        };
+    });
+};
