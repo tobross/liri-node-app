@@ -51,7 +51,7 @@ function myTweets() {
                 var timeArr = time.split(' ');
                 var output = tweetNum + "\n" + tweets[i].text + "\n" + timeArr.slice(0, 4).join('- ') + "\n";
                 process.stdout.write(output);
-                fs.appendFile("log.txt", +"\n" + output, function (error) {
+                fs.appendFile("log.txt", +line + output, function (error) {
                     if (error) throw error;
                 });
             }
@@ -65,8 +65,8 @@ function spotifyThisSong() {
     var spotify = new Spotify(keys.spotify);
 
     var songName = commandTwo;
-    
-    
+
+
     if (!commandTwo) {
         noInput();
     }
@@ -82,8 +82,12 @@ function spotifyThisSong() {
 
         console.log("Results: " + songs.length + " total tracks.");
         for (i = 0; i < 5; i++) {
-            console.log(line + songs[i].artists[0].name + line + songs[i].name + line + songs[i].preview_url + line + songs[i].album.name + line);
+            var songsRecord = line + songs[i].artists[0].name + line + songs[i].name + line + songs[i].preview_url + line + songs[i].album.name + line;
             var artists;
+            console.log(songsRecord);
+            fs.appendFile("log.txt", +line + songsRecord, function (error) {
+                if (error) throw error;
+            });
         }
 
     });
@@ -113,22 +117,26 @@ function doWhatItSays() {
 function movieThis() {
     var movie = commandTwo;
     if (!movie) {
-        noInput();
+        console.log("No entry? You must be Mr. Nobody!" + line);
+        movie = "Mr Nobody";
     }
     movieName = movie;
     request("http://omdbapi.com?t=" + movieName + "&y=&plot=shot&apikey=trilogy", function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var movieObject = JSON.parse(body);
-            var movieResults = 
-            line + "\nTitle: " + movieObject.Title + line +
-                "\nYear: " + movieObject.Year +  line +
-                "\nIMDB Rating: " +movieObject.imdbRating + line +
-                "\nRotten Tomatoes Rating: " + movieObject.Ratings[1].Value + line + 
+            var movieResults =
+                line + "\nTitle: " + movieObject.Title + line +
+                "\nYear: " + movieObject.Year + line +
+                "\nIMDB Rating: " + movieObject.imdbRating + line +
+                "\nRotten Tomatoes Rating: " + movieObject.Ratings[1].Value + line +
                 "\nCountry: " + movieObject.Country + line +
-                "\nLanguage: " + movieObject.Language + line + 
-                "\nPlot: " + movieObject.Plot + line + 
+                "\nLanguage: " + movieObject.Language + line +
+                "\nPlot: " + movieObject.Plot + line +
                 "\nActors: " + movieObject.Actors + line;
-                console.log(movieResults);
+            console.log(movieResults);
+            fs.appendFile("log.txt", + line + movieResults, function (error) {
+                if (error) throw error;
+            });
         };
     });
 };
