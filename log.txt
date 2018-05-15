@@ -156,3 +156,29 @@ Mon- May- 14- 23:04:56
 NaN2
 Tweeting for school!
 Mon- May- 14- 23:04:24
+NaN
+========================================================================
+
+Title: Avengers: Infinity War
+========================================================================
+
+Year: 2018
+========================================================================
+
+IMDB Rating: 9.0
+========================================================================
+
+Rotten Tomatoes Rating: 84%
+========================================================================
+
+Country: USA
+========================================================================
+
+Language: English
+========================================================================
+
+Plot: The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.
+========================================================================
+
+Actors: Robert Downey Jr., Chris Hemsworth, Mark Ruffalo, Chris Evans
+========================================================================
